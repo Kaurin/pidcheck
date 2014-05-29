@@ -9,7 +9,7 @@
 # This script is ment to be run via cron
 #
 # Created by Milos Kaurin using the deluged script
-# 2014/06/28 ; Last edit: 2014/05/28
+# 2014/06/28 ; Last edit: 2014/05/29
 #
 
 # Don't touch this unless you know what you are doing
@@ -51,7 +51,7 @@ SUBJECT="Processname on $HOSTNAME"
 # Functions
 #
 
-# Helper mail function
+# Mail function
 function emailthis {
     if $SEND_MAIL
         then
