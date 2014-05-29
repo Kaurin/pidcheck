@@ -75,7 +75,7 @@ else
         then
         PROGRAM_ON=true
     else
-        emailthis "Pid file exists, but the program was not running."
+        emailthis "Pid file exists, but the program was not running. Continuing with operation"
         PROGRAM_ON=false
     fi
 fi
@@ -86,7 +86,15 @@ if $KEEPOFF
     then
     if $PROGRAM_ON
         then
-        kill "$PROGRAM_PID"
+        if ! kill "$PROGRAM_PID"
+            then
+            sleep 2
+            if ! kill -9 "PROGRAM_PID"
+                then
+                emailthis "Could not kill program even with kill -9. Manual intervention required."
+                exit 25
+            fi
+        fi
         emailthis "The program is now off, because of the control variable"
         exit 0
     else
@@ -102,6 +110,7 @@ if ! $PROGRAM_ON
         then
         # If we fail to start the program, we get an email notifying us
         emailthis "The program failed to start! Manual intervention required!"
+        exit 26
     fi
 fi
 
