@@ -44,7 +44,7 @@ LOGFILE="/path/to/program/log.file"
 MAILTO="yourmail@someaddr.com"
 
 # Option. Mail subject
-SUBJECT="Processname on $HOSTNAME"
+SUBJECT="Automatic mail from Processname on $HOSTNAME"
 
 
 #
